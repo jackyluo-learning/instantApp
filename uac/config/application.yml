@@ -1,0 +1,30 @@
+server:
+  port: 2013
+  address: localhost
+  tomcat:
+    uri-encoding: UTF-8
+    remote-ip-header: x-forwarded-for
+    use-forward-headers: true
+    context-path: /uac
+
+spring:
+  application:
+    name: uac
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${server.address}:3306/android_app_info?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: JK970227456gjk
+    hikari:
+      max-lifetime: 28740000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${server.address}:5201/eureka/
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.androidgroup.uac.dao.model
+  mapper-locations: classpath:com.androidgroup.uac.dao/*.xml
